@@ -73,10 +73,10 @@
                 background: #1a1a1a;
             }
             h4 {
-                border-bottom: 2px solid orange;
+                border-bottom: 2px solid black;
             }
             h5 {
-                border-bottom: 1px solid orange;
+                border-bottom: 1px solid black;
             }
         </style>
     </head>
@@ -85,8 +85,8 @@
             <div class="top-menu">
 
                 <nav class="ink-navigation ink-grid">
-                    <ul class="menu horizontal">
-                        <li class="active"><a href="/"><b>{{ application_name }}</b></a></li>
+                    <ul class="menu horizontal black">
+                        <li class="active"><a href="/">{{ application_name }}</a></li>
 		        {% if user %}
                         <li><a href="{{ logout_url }}">Logout</a></li>
 		        {% else %}
@@ -113,6 +113,11 @@
         </div>
         <footer class="clearfix">
             <div class="ink-grid">
+                <ul class="unstyled inline half-vertical-space">
+                    <li class="active"><a href="#">About</a></li>
+                    <li><a href="#">Sitemap</a></li>
+                    <li><a href="#">Contacts</a></li>
+                </ul>
                 <p class="note">&copy; Copyright 2014 Amoul Solo</p>
             </div>
         </footer>
