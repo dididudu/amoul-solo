@@ -66,26 +66,22 @@
         </style>
     </head>
     <body>
-        
-        <!-- Add your site or application content here -->
-        
-        <div class="ink-grid">
+        <div class="wrap">
+            <div class="top-menu">
 
-            <header class="vspace">
-            </header>
+                <nav class="ink-navigation ink-grid">
+                    <ul class="menu horizontal orange">
+                        <li class="active"><a href="/"><b>{{ application_name }}</b></a></li>
+		        {% if user %}
+                        <li><a href="{{ logout_url }}">Logout</a></li>
+		        {% else %}
+                        <li><a href="{{ login_url }}">Login</a></li>
+		        {% endif %}
+                    </ul>
+                </nav>
+            </div>
 
-            <nav class="ink-navigation">
-                <ul class="horizontal menu orange rounded shadowed">
-                    <li class="active"><a href="/"><b>{{ application_name }}</b></a></li>
-		{% if user %}
-                    <li><a href="{{ logout_url }}">Logout</a></li>
-		{% else %}
-                    <li><a href="{{ login_url }}">Login</a></li>
-		{% endif %}
-                </ul>
-            </nav>
-
-            <div class="vspace">
+            <div class="ink-grid vertical-space">
 		{% if user %}
 			{% block body %}
 			<p>...</p>
@@ -98,16 +94,12 @@
 			<p>&nbsp;</p>
 		{% endif %}   
             </div>
-
-            <footer>
-                <div class="ink-grid">
-                    <p class="small vspace">
-                        &copy; Copyright 2014 Amoul Solo
-                    </p>
-                </div>
-            </footer>
-        
+            <div class="push"></div>
         </div>
-
+        <footer class="clearfix">
+            <div class="ink-grid">
+                <p class="note">&copy; Copyright 2014 Amoul Solo</p>
+            </div>
+        </footer>
     </body>
 </html>
