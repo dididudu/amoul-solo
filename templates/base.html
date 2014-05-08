@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>{{ application_name }}{% block title %}{% endblock %}</title>
-        <meta name="description" content="">
+        <meta name="description" content="{% block description %}{% endblock %}">
         <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
         <meta name="HandheldFriendly" content="True">
         <meta name="MobileOptimized" content="320">
@@ -40,10 +40,10 @@
         
         <style type="text/css">
             h4 {
-                border-bottom: 2px solid black;
+                border-bottom: 2px solid orange;
             }
             h5 {
-                border-bottom: 1px solid black;
+                border-bottom: 1px solid orange;
             }
         </style>
     </head>
@@ -84,7 +84,7 @@
             <footer>
                 <div class="ink-grid">
                     <p class="small vspace">
-                        &copy; Copyright 2013-2014 Amoul Solo
+                        &copy; Copyright 2014 Amoul Solo
                     </p>
                 </div>
             </footer>
