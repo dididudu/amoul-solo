@@ -50,18 +50,36 @@
 	{% block js %}{% endblock %}
         
         <style type="text/css">
-            h4 {
-                border-bottom: 2px solid orange;
+            html, body {
+                height: 100%;
+                background: #f0f0f0;
             }
-            h5 {
-                border-bottom: 1px solid orange;
+            .wrap {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                margin: 0 auto -120px;
+                overflow: auto;
             }
-           footer {
+            .push, footer {
+                height: 120px;
+                margin-top: 0;
+            }
+            footer {
                 background: #ccc;
                 border: 0;
             }
             footer * {
                 line-height: inherit;
+            }
+            .top-menu {
+                background: #1a1a1a;
+            }
+            h4 {
+                border-bottom: 2px solid orange;
+            }
+            h5 {
+                border-bottom: 1px solid orange;
             }
         </style>
     </head>
@@ -70,7 +88,7 @@
             <div class="top-menu">
 
                 <nav class="ink-navigation ink-grid">
-                    <ul class="menu horizontal orange">
+                    <ul class="menu horizontal">
                         <li class="active"><a href="/"><b>{{ application_name }}</b></a></li>
 		        {% if user %}
                         <li><a href="{{ logout_url }}">Logout</a></li>
