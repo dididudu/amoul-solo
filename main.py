@@ -15,6 +15,20 @@ class MainPage(BaseRequestHandler):
       }
     self.generate('index.html', template_values)
 
+class AboutPage(BaseRequestHandler):
+  def get(self):
+    template_values = {
+      }
+    self.generate('about.html', template_values)
+
+class ContactsPage(BaseRequestHandler):
+  def get(self):
+    template_values = {
+      }
+    self.generate('contacts.html', template_values)
+
 application = webapp2.WSGIApplication([
-  ('/', MainPage)
+  ('/', MainPage),
+  ('/about', AboutPage),
+  ('/contacts', ContactsPage)
 ], debug=True)
