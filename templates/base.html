@@ -23,18 +23,29 @@
         <link rel="apple-touch-startup-image" href="/static/img/splash.1024x748.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink.css">
-        
-        <!--[if IE 7 ]>
-            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie7.css" type="text/css" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-flex.min.css">
+        <link rel="stylesheet" type="text/css" href="http://cdn.ink.sapo.pt/3.0.0/css/font-awesome.min.css">
+
+        <!-- load inks css for IE8 -->
+        <!--[if lt IE 9 ]>
+            <link rel="stylesheet" href="http://cdn.ink.sapo.pt/3.0.0/css/ink-ie.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
         <![endif]-->
 
-        <!-- Javascripts -->
+        <!-- test browser flexbox support and load legacy grid if unsupported -->
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/modernizr.js"></script>
+        <script type="text/javascript">
+            Modernizr.load({
+              test: Modernizr.flexbox,
+              nope : 'http://cdn.ink.sapo.pt/3.0.0/css/ink-legacy.min.css'
+            });
+        </script>
+
+        <!-- load inks javascript files from the cdn -->
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/holder.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink.min.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-all.min.js"></script>
+        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink-ui.min.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/ink.tabs.js"></script>
-        <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/autoload.js"></script>
         <script type="text/javascript" src="http://cdn.ink.sapo.pt/3.0.0/js/html5shiv.js"></script>
 	{% block js %}{% endblock %}
         
