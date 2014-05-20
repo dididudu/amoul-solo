@@ -8,6 +8,8 @@ __author__ = 'Didier Dulac'
 import webapp2
 
 from actions import BaseRequestHandler
+from actions import AddExpression
+from actions import ListExpressions
 
 class MainPage(BaseRequestHandler):
   def get(self):
@@ -30,5 +32,7 @@ class ContactsPage(BaseRequestHandler):
 application = webapp2.WSGIApplication([
   ('/', MainPage),
   ('/about', AboutPage),
-  ('/contacts', ContactsPage)
+  ('/contacts', ContactsPage),
+  ('/addExpression', AddExpression),
+  ('/expressions', ListExpressions)
 ], debug=True)
