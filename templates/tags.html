@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block description %}Tags des expressions du site Amoul Solo{% endblock %}
+{% block body %}
+
+ <table class="ink-table alternating hover">
+  <thead>
+   <tr>
+    <th>Tag</th>
+   </tr>
+  </thead>
+  <tbody>
+  {% for tag in tags %}
+   <tr>
+    <td>{{ tag.nom }}</td>
+   </tr>
+  {% endfor %}
+  </tbody>
+ </table>
+
+{% if admin %}
+ <form action="/addTag" method="post">
+  <table class="form">
+   <tr>
+    <td><label>Tag :</label></td>
+    <td><input name="nom" value=""/></td>
+    <td><input class="submit" type="submit" value="Ajouter"/></td>
+   </tr>
+  </table>
+ </form>
+{% endif %}
+
+{% endblock %}

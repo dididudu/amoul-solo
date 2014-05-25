@@ -9,7 +9,9 @@ import webapp2
 
 from actions import BaseRequestHandler
 from actions import AddExpression
+from actions import AddTag
 from actions import ListExpressions
+from actions import ListTags
 
 class MainPage(BaseRequestHandler):
   def get(self):
@@ -34,5 +36,7 @@ application = webapp2.WSGIApplication([
   ('/about', AboutPage),
   ('/contacts', ContactsPage),
   ('/addExpression', AddExpression),
-  ('/expressions', ListExpressions)
+  ('/addTag', AddTag),
+  ('/expressions', ListExpressions),
+  ('/tags', ListTags)
 ], debug=True)

@@ -15,6 +15,7 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
 from models import Expression
+from models import Tag
 
 # Set to true if we want to have our webapp print stack traces, etc
 _DEBUG = True
@@ -59,6 +60,29 @@ class AddExpression(webapp2.RequestHandler):
     logging.debug('Finish Expression adding')
     self.redirect('/expressions')
 
+class AddTag(webapp2.RequestHandler):
+  def post(self):
+    logging.debug('Start tag adding request')
+
+    n = self.request.get('nom')
+    tag = Tag(nom=n)
+
+    user = users.GetCurrentUser()
+    if user:
+      logging.info('Tag %s added by user %s' % (n, user.nickname()))
+      tag.created_by = user
+      tag.updated_by = user
+    else:
+      logging.info('Tag %s added by anonymous user' % n)
+
+    try:
+      tag.put()
+    except:
+      logging.error('There was an error adding tag %s' % n)
+
+    logging.debug('Finish tag adding')
+    self.redirect('/tags')
+
 class ListExpressions(BaseRequestHandler):
   def get(self):
     expressions = []
@@ -76,3 +100,19 @@ class ListExpressions(BaseRequestHandler):
 
     self.generate('expressions.html', template_values)
 
+class ListTags(BaseRequestHandler):
+  def get(self):
+    tags = []
+    title = 'Tags'
+    try:
+      tags = Tag.gql("ORDER BY nom")
+      title = 'Tags'
+    except:
+      logging.error('There was an error retreiving tags from the datastore')
+
+    template_values = {
+      'title': title,
+      'tags': tags,
+      }
+
+    self.generate('tags.html', template_values)

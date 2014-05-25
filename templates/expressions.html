@@ -20,16 +20,19 @@
   </tbody>
  </table>
 
+{% if admin %}
  <form action="/addExpression" method="post">
   <table class="form">
    <tr>
     <td><label>Francais :</label></td>
     <td><input name="francais" value=""/></td>
+    <td>&nbsp;</td>
     <td><label>Wolof :</label></td>
     <td><input name="wolof" value=""/></td>
     <td><input class="submit" type="submit" value="Ajouter"/></td>
    </tr>
   </table>
  </form>
+{% endif %}
 
 {% endblock %}
