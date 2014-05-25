@@ -175,4 +175,4 @@ class ViewExpression(BaseRequestHandler):
       'expression': ex
       }
 
-    self.generate('exercice.html', template_values)
+    self.generate('expression.html', template_values)

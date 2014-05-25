@@ -41,6 +41,6 @@ application = webapp2.WSGIApplication([
   ('/addTag', AddTag),
   ('/addTagToExpression', AddTagToExpression),
   ('/expressions', ListExpressions),
-  ('/tags', ListTags),
-  ('/expression/([-\w]+)', ViewExpression)
+  ('/expression/([-\w]+)', ViewExpression),
+  ('/tags', ListTags)
 ], debug=True)
