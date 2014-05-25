@@ -83,6 +83,41 @@ class AddTag(webapp2.RequestHandler):
     logging.debug('Finish tag adding')
     self.redirect('/tags')
 
+class AddTagToExpression(webapp2.RequestHandler):
+  def get(self):
+    logging.info('Start adding tag to expression request')
+
+    tag = None
+    try:
+      id = int(self.request.get('t'))
+      tag = Tag.get(db.Key.from_path('Tag', id))
+    except:
+      tag = None
+
+    if tag:
+      expression = None
+      try:
+        id = int(self.request.get('id'))
+        expression = Expression.get(db.Key.from_path('Expression', id))
+      except:
+        expression = None
+
+      if expression:
+        if tag.key() not in expression.tags:
+          expression.tags.append(tag.key())
+          expression.put()
+          logging.info('Finish tag adding')
+        else:
+          expression.tags.remove(tag.key())
+          expression.put()
+          logging.info('Tag already added')
+      else:
+        logging.info('Expression not found so no tag adding')
+    else:
+      logging.info('Tag not found so no tag adding')
+
+    self.redirect('/expression/%s' % id)
+
 class ListExpressions(BaseRequestHandler):
   def get(self):
     expressions = []
@@ -116,3 +151,28 @@ class ListTags(BaseRequestHandler):
       }
 
     self.generate('tags.html', template_values)
+
+class ViewExpression(BaseRequestHandler):
+  def get(self, arg):
+    title = 'Expression introuvable'
+    ex = None
+    # Get and displays the expression informations
+    try:
+      id = int(arg)
+      ex = Expression.get(db.Key.from_path('Expression', id))
+    except:
+      ex = None
+      logging.error('There was an error retreiving expression and its informations from the datastore')
+
+    if not ex:
+      self.error(403)
+      return
+    else:
+      title = "Expression"
+
+    template_values = {
+      'title': title,
+      'expression': ex
+      }
+
+    self.generate('exercice.html', template_values)

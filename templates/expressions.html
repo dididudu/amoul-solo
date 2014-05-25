@@ -13,7 +13,7 @@
   <tbody>
   {% for exp in expressions %}
    <tr>
-    <td>{{ exp.francais }}</td>
+    <td><a href="/expression/{{ exp.key.id }}">{{ exp.francais }}</a></td>
     <td>{{ exp.wolof }}</td>
    </tr>
   {% endfor %}
