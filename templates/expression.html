@@ -6,4 +6,22 @@
 <p>{{ expression.francais }}</p>
 <p><i>{{ expression.wolof }}</i></p>
 
+<p>&nbsp;</p>
+
+<p>Tags&nbsp;:
+{% for tag in expression.mes_tags %}
+  <a href="/expressions?tag={{ tag.key.id }}"><span class="ink-badge black">{{ tag.nom }}</span></a>
+{% endfor %}
+</p>
+
+<p>&nbsp;</p>
+
+{% if admin %}
+<p>Ajout de tags&nbsp;:
+{% for tag in tags %}
+ <a href="/addTagToExpression?t={{ tag.key.id }}&id={{ expression.key.id }}"><span class="ink-badge black">{{ tag.nom }}</span></a>
+{% endfor %}
+</p>
+{% endif %}
+
 {% endblock %}

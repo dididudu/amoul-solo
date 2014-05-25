@@ -156,10 +156,13 @@ class ViewExpression(BaseRequestHandler):
   def get(self, arg):
     title = 'Expression introuvable'
     ex = None
+    tags = []
+
     # Get and displays the expression informations
     try:
       id = int(arg)
       ex = Expression.get(db.Key.from_path('Expression', id))
+      tags = Tag.gql("ORDER BY nom")
     except:
       ex = None
       logging.error('There was an error retreiving expression and its informations from the datastore')
@@ -172,7 +175,8 @@ class ViewExpression(BaseRequestHandler):
 
     template_values = {
       'title': title,
-      'expression': ex
+      'expression': ex,
+      'tags': tags
       }
 
     self.generate('expression.html', template_values)
