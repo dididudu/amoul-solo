@@ -8,6 +8,7 @@
    <tr>
     <th>Fran&ccedil;ais</th>
     <th>Wolof</th>
+    <th>&nbsp;</th>
    </tr>
   </thead>
   <tbody>
@@ -15,6 +16,11 @@
    <tr>
     <td><a href="/expression/{{ exp.key.id }}">{{ exp.francais }}</a></td>
     <td>{{ exp.wolof }}</td>
+    <td>
+    {% for tag in exp.mes_tags %}
+      <a href="/expressions?tag={{ tag.key.id }}"><span class="ink-badge black">{{ tag.nom }}</span></a>
+    {% endfor %}
+    </td>
    </tr>
   {% endfor %}
   </tbody>
