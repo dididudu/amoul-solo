@@ -30,3 +30,8 @@ class Expression(Objet):
   def mes_tags(self):
     return Tag.get(self.tags)
 
+class Mesure(db.Model):
+  jour = db.DateProperty()
+  annee = db.IntegerProperty()
+  valeur = db.IntegerProperty()
+  type = db.StringProperty(choices=set(["E", "G"]))

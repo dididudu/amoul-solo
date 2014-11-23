@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block description %}Mesures de trucs{% endblock %}
+{% block body %}
+
+ <table class="ink-table alternating hover">
+  <thead>
+   <tr>
+    <th>Jour</th>
+    <th>Valeur</th>
+   </tr>
+  </thead>
+  <tbody>
+  {% for mesure in mesures %}
+   <tr>
+    <td>{{ mesure.jour }}</td>
+    <td>{{ mesure.valeur }}</td>
+   </tr>
+  {% endfor %}
+  </tbody>
+ </table>
+
+{% endblock %}

@@ -16,6 +16,7 @@ from google.appengine.ext.webapp import template
 
 from models import Expression
 from models import Tag
+from models import Mesure
 
 # Set to true if we want to have our webapp print stack traces, etc
 _DEBUG = True
@@ -151,6 +152,28 @@ class ListTags(BaseRequestHandler):
       }
 
     self.generate('tags.html', template_values)
+
+class ListMesures(BaseRequestHandler):
+  def get(self):
+    mesures = []
+    title = 'mesures'
+    try:
+      dt = datetime.date.today()
+      an = dt.year
+      mesure = Mesure(jour=dt,annee=an,valeur=10,type="E")
+      mesure.put()
+
+      mesures = mesure.gql("ORDER BY jour")
+      title = 'Mesures'
+    except:
+      logging.error('There was an error retreiving mesures from the datastore')
+
+    template_values = {
+      'title': title,
+      'mesures': mesures,
+      }
+
+    self.generate('mesures.html', template_values)
 
 class ViewExpression(BaseRequestHandler):
   def get(self, arg):
