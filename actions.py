@@ -158,11 +158,6 @@ class ListMesures(BaseRequestHandler):
     mesures = []
     title = 'mesures'
     try:
-      dt = datetime.date.today()
-      an = dt.year
-      mesure = Mesure(jour=dt,annee=an,valeur=10,type="E")
-      mesure.put()
-
       mesures = mesure.gql("ORDER BY jour")
       title = 'Mesures'
     except:
