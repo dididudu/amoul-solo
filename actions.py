@@ -158,7 +158,7 @@ class ListMesures(BaseRequestHandler):
     mesures = []
     title = 'mesures'
     try:
-      mesures = mesure.gql("ORDER BY jour")
+      mesures = Mesure.gql("ORDER BY jour")
       title = 'Mesures'
     except:
       logging.error('There was an error retreiving mesures from the datastore')
