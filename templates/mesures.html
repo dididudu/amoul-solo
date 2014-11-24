@@ -30,6 +30,8 @@
 
  <div id="chart_div" style="width: 1000px; height: 500px;"></div>
 
+ <p>&nbsp;</p>
+
  <table class="ink-table alternating hover">
   <thead>
    <tr>
@@ -48,5 +50,17 @@
   {% endfor %}
   </tbody>
  </table>
+
+{% if admin %}
+ <form action="/addMesure" method="post">
+  <table class="form">
+   <tr>
+    <td><label>Mesure :</label></td>
+    <td><input name="m" value=""/></td>
+    <td><input class="submit" type="submit" value="Ajouter"/></td>
+   </tr>
+  </table>
+ </form>
+{% endif %}
 
 {% endblock %}
