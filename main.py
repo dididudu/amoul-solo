@@ -10,6 +10,7 @@ import webapp2
 from actions import BaseRequestHandler
 from actions import AddExpression
 from actions import AddTag
+from actions import AddMesure
 from actions import AddTagToExpression
 from actions import ListExpressions
 from actions import ListTags
@@ -40,6 +41,7 @@ application = webapp2.WSGIApplication([
   ('/contacts', ContactsPage),
   ('/addExpression', AddExpression),
   ('/addTag', AddTag),
+  ('/addMesure', AddMesure),
   ('/addTagToExpression', AddTagToExpression),
   ('/expressions', ListExpressions),
   ('/expression/([-\w]+)', ViewExpression),

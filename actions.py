@@ -84,6 +84,12 @@ class AddTag(webapp2.RequestHandler):
     logging.debug('Finish tag adding')
     self.redirect('/tags')
 
+class AddMesure(webapp2.RequestHandler):
+  def post(self):
+    logging.debug('Start mesure adding request')
+    logging.debug('Finish mesure adding')
+    self.redirect('/mesures')
+
 class AddTagToExpression(webapp2.RequestHandler):
   def get(self):
     logging.info('Start adding tag to expression request')
