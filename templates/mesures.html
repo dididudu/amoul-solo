@@ -11,7 +11,7 @@
         var data = google.visualization.arrayToDataTable([
           ['Date', 'valeur'],
   {% for mesure in mesures %}
-          ['{{ mesure|jour:"d/m/y" }}',  {{ mesure.valeur }}],
+          ['{{ mesure.jour|date:"d/m/y" }}',  {{ mesure.valeur }}],
   {% endfor %}
         ]);
 
