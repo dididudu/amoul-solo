@@ -1,7 +1,34 @@
 {% extends "base.html" %}
 
 {% block description %}Mesures de trucs{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Date', 'valeur'],
+  {% for mesure in mesures %}
+          ['{{ mesure|jour:"d/m/y" }}',  {{ mesure.valeur }}],
+  {% endfor %}
+        ]);
+
+        var options = {
+          title: 'Evolution',
+          legend: {position: 'none'}
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+{% endblock %}
+
 {% block body %}
+
+ <div id="chart_div" style="width: 1000px; height: 500px;"></div>
 
  <table class="ink-table alternating hover">
   <thead>
