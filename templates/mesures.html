@@ -7,13 +7,15 @@
   <thead>
    <tr>
     <th>Jour</th>
+    <th>Type</th>
     <th>Valeur</th>
    </tr>
   </thead>
   <tbody>
   {% for mesure in mesures %}
    <tr>
-    <td>{{ mesure.jour }}</td>
+    <td align="center">{{ mesure.jour|date:"j/m/y" }}</td>
+    <td align="center">{{ mesure.type }}</td>
     <td>{{ mesure.valeur }}</td>
    </tr>
   {% endfor %}
