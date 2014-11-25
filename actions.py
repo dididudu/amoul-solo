@@ -90,7 +90,7 @@ class AddMesure(webapp2.RequestHandler):
     try:
       m = self.request.get('m')
       tab = m.split(',')
-      logging.info('Adding %s %s',(tab[0],tab[1]))
+      logging.info('Adding %s' % m)
       j = datetime.datetime.strptime(tab[0], "%Y-%m-%d")
       a = j.year
       v = int(tab[1])
