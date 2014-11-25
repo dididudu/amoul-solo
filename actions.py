@@ -87,6 +87,16 @@ class AddTag(webapp2.RequestHandler):
 class AddMesure(webapp2.RequestHandler):
   def post(self):
     logging.debug('Start mesure adding request')
+    try:
+      m = self.request.get('m')
+      tab = m.split(',')
+      j=datetime.datetime.strptime(tab[0], "%Y-%m-%d")
+      a = j.year
+      v = float(tab[1])
+      mes = Mesure(jour=j,annee=a,type='E',valeur=v)
+      mes.put()
+    except:
+      logging.error('There was an error adding mesure')
     logging.debug('Finish mesure adding')
     self.redirect('/mesures')
 
