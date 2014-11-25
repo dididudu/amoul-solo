@@ -90,9 +90,10 @@ class AddMesure(webapp2.RequestHandler):
     try:
       m = self.request.get('m')
       tab = m.split(',')
-      logging.info('Adding %s' % m)
+      logging.info('Adding %s' % tab[0])
       j = datetime.datetime.strptime(tab[0], "%Y-%m-%d")
       a = j.year
+      logging.info('Adding %s' % tab[1])
       v = int(tab[1])
       mes = Mesure(jour=j,annee=a,type='E',valeur=v)
       mes.put()
