@@ -28,9 +28,17 @@
 
 {% block body %}
 
- <div id="chart_div" style="width: 1000px; height: 500px;"></div>
+<div id="myTabs" class="ink-tabs top">
+    <ul class="tabs-nav">
+        <li><a class="tabs-tab" href="#chart">Courbe</a></li>
+        <li><a class="tabs-tab" href="#table">Tableau</a></li>
+    </ul>
 
- <p>&nbsp;</p>
+    <div id="chart" class="tabs-content">
+        <div id="chart_div" style="width: 1000px; height: 500px;"></div>
+    </div>
+
+    <div id="table" class="tabs-content">
 
  <table class="ink-table alternating hover">
   <thead>
@@ -62,5 +70,8 @@
   </table>
  </form>
 {% endif %}
+
+    </div>
+</div>
 
 {% endblock %}
