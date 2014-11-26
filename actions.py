@@ -95,7 +95,7 @@ class AddMesure(webapp2.RequestHandler):
       a = j.year
       logging.info('Adding %s' % tab[1])
       v = int(tab[1])
-      mes = Mesure(jour=j,annee=a,type='E',valeur=v)
+      mes = Mesure(jour=j.date(),annee=a,type='E',valeur=v)
       mes.put()
     except:
       logging.error('There was an error adding mesure')
