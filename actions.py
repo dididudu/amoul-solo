@@ -92,6 +92,7 @@ class AddMesure(webapp2.RequestHandler):
       tab = m.split(',')
       logging.info('Adding %s' % tab[0])
       j = datetime.datetime.strptime(tab[0], "%Y-%m-%d")
+      logging.info('Date %s' % j)
       a = j.year
       logging.info('Adding %s' % tab[1])
       v = int(tab[1])
