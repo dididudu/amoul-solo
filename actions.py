@@ -173,6 +173,8 @@ class ListTags(BaseRequestHandler):
 class ListMesures(BaseRequestHandler):
   def get(self):
     mesures = []
+    type = 'E'
+    annee = 2012
     title = 'mesures'
     try:
       mesures = Mesure.gql("ORDER BY jour")
@@ -182,7 +184,9 @@ class ListMesures(BaseRequestHandler):
 
     template_values = {
       'title': title,
-      'mesures': mesures,
+      'type': type,
+      'annee': annee,
+      'mesures': mesures
       }
 
     self.generate('mesures.html', template_values)
