@@ -94,6 +94,7 @@ class AddMesure(webapp2.RequestHandler):
       logging.info('Adding %s %s' % (m,t))
       j = datetime.date.today()
       aa = int(a)
+      j.year = aa
       v = int(m)
       mes = Mesure(jour=j,annee=aa,type=t,valeur=v)
       mes.put()
