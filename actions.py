@@ -90,11 +90,12 @@ class AddMesure(webapp2.RequestHandler):
     try:
       m = self.request.get('m')
       t = self.request.get('t')
+      a = self.request.get('a')
       logging.info('Adding %s %s' % (m,t))
       j = datetime.date.today()
-      a = j.year
+      aa = int(a)
       v = int(m)
-      mes = Mesure(jour=j,annee=a,type=t,valeur=v)
+      mes = Mesure(jour=j,annee=aa,type=t,valeur=v)
       mes.put()
     except:
       logging.error('There was an error adding mesure')
