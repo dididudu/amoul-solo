@@ -104,7 +104,7 @@ class AddMesure(webapp2.RequestHandler):
     except:
       logging.error('There was an error adding mesure')
     logging.debug('Finish mesure adding')
-    self.redirect('/mesures#table')
+    self.redirect('/mesures?annee=%s#table' % a)
 
 class AddTagToExpression(webapp2.RequestHandler):
   def get(self):
@@ -178,11 +178,14 @@ class ListTags(BaseRequestHandler):
 class ListMesures(BaseRequestHandler):
   def get(self):
     mesures = []
-    type = 'E'
-    annee = 2012
+
+    type = self.request.get('t')
+    a = self.request.get('a')
+    annee = int(a)
     title = 'mesures'
+
     try:
-      mesures = Mesure.gql("ORDER BY jour")
+      mesures = Mesure.gql("WHERE annee = :1 ORDER BY jour", annee)
       title = 'Mesures'
     except:
       logging.error('There was an error retreiving mesures from the datastore')
