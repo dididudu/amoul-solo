@@ -3,3 +3,8 @@ indexes:
   properties:
   - name: annee
   - name: jour
+
+- kind: Mesure
+  properties:
+  - name: type
+  - name: jour
