@@ -180,12 +180,10 @@ class ComputeMesures(BaseRequestHandler):
     mesures = []
 
     type = self.request.get('t')
-    a = self.request.get('a')
-    annee = int(a)
     title = 'mesures'
 
     try:
-      mesures = Mesure.gql("WHERE annee = :1 ORDER BY jour", annee)
+      mesures = Mesure.gql("WHERE type = :1 ORDER BY jour", type)
       val = 0
       for mes in mesures:
         mes.conso = mes.valeur - val
@@ -203,7 +201,7 @@ class ComputeMesures(BaseRequestHandler):
       'mesures': mesures
       }
 
-    self.generate('mesures.html', template_values)
+    self.generate('mesures.html?a=2013', template_values)
 
 class ListMesures(BaseRequestHandler):
   def get(self):
