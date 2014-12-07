@@ -184,8 +184,8 @@ class ComputeMesures(BaseRequestHandler):
 
     try:
       mesures = Mesure.gql("WHERE type = :1 ORDER BY jour", type)
-      val = 69796
-      j = datetime.date(2011,1,5)
+      val = 65996
+      j = datetime.date(2011,12,24)
       for mes in mesures:
         mes.conso = mes.valeur - val
         delta = mes.jour - j
