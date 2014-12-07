@@ -34,5 +34,6 @@ class Mesure(db.Model):
   jour = db.DateProperty()
   annee = db.IntegerProperty()
   valeur = db.IntegerProperty()
+  nb_jours = db.IntegerProperty()
   conso = db.IntegerProperty()
   type = db.StringProperty(choices=set(["E", "G"]))

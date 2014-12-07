@@ -184,12 +184,15 @@ class ComputeMesures(BaseRequestHandler):
 
     try:
       mesures = Mesure.gql("WHERE type = :1 ORDER BY jour", type)
-      val = 0
+      val = 69796
+      j = datetime.date(2011,1,5)
       for mes in mesures:
         mes.conso = mes.valeur - val
-        mes.nb_jour = 1
+        delta = mes.jour - j
+        mes.nb_jours = delta.days
         mes.put()
         val = mes.valeur
+        j = mes.jour
       title = 'Mesures'
     except:
       logging.error('There was an error retreiving mesures from the datastore')
