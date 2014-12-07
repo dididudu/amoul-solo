@@ -46,6 +46,7 @@
     <th>Jour</th>
     <th>Type</th>
     <th>Valeur</th>
+    <th>Conso.</th>
    </tr>
   </thead>
   <tbody>
@@ -54,10 +55,13 @@
     <td align="center">{{ mesure.jour|date:"j/m/y" }}</td>
     <td align="center">{{ mesure.type }}</td>
     <td>{{ mesure.valeur }}</td>
+    <td>{{ mesure.conso }}</td>
    </tr>
   {% endfor %}
   </tbody>
  </table>
+
+ <p><a href="/computeMesures">Compute</a></p>
 
 {% if admin %}
  <form action="/addMesure" method="post">

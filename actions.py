@@ -175,6 +175,36 @@ class ListTags(BaseRequestHandler):
 
     self.generate('tags.html', template_values)
 
+class ComputeMesures(BaseRequestHandler):
+  def get(self):
+    mesures = []
+
+    type = self.request.get('t')
+    a = self.request.get('a')
+    annee = int(a)
+    title = 'mesures'
+
+    try:
+      mesures = Mesure.gql("WHERE annee = :1 ORDER BY jour", annee)
+      val = 0
+      for mes in mesures:
+        mes.conso = mes.valeur - val
+        mes.nb_jour = 1
+        mes.put()
+        val = mes.valeur
+      title = 'Mesures'
+    except:
+      logging.error('There was an error retreiving mesures from the datastore')
+
+    template_values = {
+      'title': title,
+      'type': type,
+      'annee': annee,
+      'mesures': mesures
+      }
+
+    self.generate('mesures.html', template_values)
+
 class ListMesures(BaseRequestHandler):
   def get(self):
     mesures = []
