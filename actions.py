@@ -196,12 +196,12 @@ class ComputeMesures(BaseRequestHandler):
 
     template_values = {
       'title': title,
+      'annee': 2013,
       'type': type,
-      'annee': annee,
       'mesures': mesures
       }
 
-    self.generate('mesures.html?a=2013', template_values)
+    self.generate('mesures.html', template_values)
 
 class ListMesures(BaseRequestHandler):
   def get(self):
