@@ -37,3 +37,9 @@ class Mesure(db.Model):
   nb_jours = db.IntegerProperty()
   conso = db.IntegerProperty()
   type = db.StringProperty(choices=set(["E", "G"]))
+
+  def get_conso(self):
+    ret = 0.0
+    if self.nb_jours:
+      ret = (self.conso * 1.0) / self.nb_jours
+    return ret
