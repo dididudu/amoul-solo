@@ -112,16 +112,16 @@ class AddTagToExpression(webapp2.RequestHandler):
 
     tag = None
     try:
-      id = int(self.request.get('t'))
-      tag = Tag.get(db.Key.from_path('Tag', id))
+      i = int(self.request.get('t'))
+      tag = Tag.get(db.Key.from_path('Tag', i))
     except:
       tag = None
 
     if tag:
       expression = None
       try:
-        id = int(self.request.get('id'))
-        expression = Expression.get(db.Key.from_path('Expression', id))
+        i = int(self.request.get('id'))
+        expression = Expression.get(db.Key.from_path('Expression', i))
       except:
         expression = None
 
@@ -139,7 +139,7 @@ class AddTagToExpression(webapp2.RequestHandler):
     else:
       logging.info('Tag not found so no tag adding')
 
-    self.redirect('/expression/%s' % id)
+    self.redirect('/expression/%s' % i)
 
 class ListExpressions(BaseRequestHandler):
   def get(self):
@@ -179,12 +179,15 @@ class ComputeMesures(BaseRequestHandler):
   def get(self):
     mesures = []
 
-    type = self.request.get('t')
+    t = self.request.get('t')
     title = 'mesures'
 
     try:
-      mesures = Mesure.gql("WHERE type = :1 ORDER BY jour", type)
-      val = 65996
+      mesures = Mesure.gql("WHERE type = :1 ORDER BY jour", t)
+      if t == 'E':
+        val = 65996
+      else:
+        val = 13331
       j = datetime.date(2011,12,24)
       for mes in mesures:
         mes.conso = mes.valeur - val
@@ -200,7 +203,7 @@ class ComputeMesures(BaseRequestHandler):
     template_values = {
       'title': title,
       'annee': 2013,
-      'type': type,
+      'type': t,
       'mesures': mesures
       }
 
@@ -210,20 +213,20 @@ class ListMesures(BaseRequestHandler):
   def get(self):
     mesures = []
 
-    type = self.request.get('t')
+    t = self.request.get('t')
     a = self.request.get('a')
     annee = int(a)
     title = 'mesures'
 
     try:
-      mesures = Mesure.gql("WHERE annee = :1 ORDER BY jour", annee)
+      mesures = Mesure.gql("WHERE annee = :1 AND type = :2 ORDER BY jour", annee, t)
       title = 'Mesures'
     except:
       logging.error('There was an error retreiving mesures from the datastore')
 
     template_values = {
       'title': title,
-      'type': type,
+      'type': t,
       'annee': annee,
       'mesures': mesures
       }
@@ -238,8 +241,8 @@ class ViewExpression(BaseRequestHandler):
 
     # Get and displays the expression informations
     try:
-      id = int(arg)
-      ex = Expression.get(db.Key.from_path('Expression', id))
+      i = int(arg)
+      ex = Expression.get(db.Key.from_path('Expression', i))
       tags = Tag.gql("ORDER BY nom")
     except:
       ex = None
