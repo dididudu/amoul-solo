@@ -91,10 +91,27 @@
                         <li><a href="/expressions">Expressions</a></li>
                         <li><a href="/tags">Tags</a></li>
 			{% if admin %}
-                        <li><a href="/mesures?a=2012&t=E">2012</a></li>
-                        <li><a href="/mesures?a=2013&t=E">2013</a></li>
-                        <li><a href="/mesures?a=2014&t=E">2014</a></li>
-			{% endif %}   
+                        <li>
+                         <a href="/mesures?a=2012&t=E">2012</a>
+                        </li>
+                        <li>
+                         <a href="/mesures?a=2013&t=E">2013</a>
+                         </li>
+                        <li>
+                         <a href="/mesures?a=2014&t=E">2014</a>
+                         <ul class="submenu">
+                          <li><a href="/mesures?a=2014&t=E">E</a></li>
+                          <li><a href="/mesures?a=2014&t=G">G</a></li>
+                         </ul>
+                        </li>
+                        <li>
+                         <a href="/mesures?a=2015&t=E">2015</a>
+                         <ul class="submenu">
+                          <li><a href="/mesures?a=2015&t=E">E</a></li>
+                          <li><a href="/mesures?a=2015&t=G">G</a></li>
+                         </ul>
+                        </li>
+                        {% endif %}
                         <li><a href="{{ logout_url }}">Logout</a></li>
 		        {% else %}
                         <li><a href="{{ login_url }}">Login</a></li>
