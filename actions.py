@@ -104,7 +104,7 @@ class AddMesure(webapp2.RequestHandler):
     except:
       logging.error('There was an error adding mesure')
     logging.debug('Finish mesure adding')
-    self.redirect('/mesures?a=%s#table' % a)
+    self.redirect('/mesures?a=%s&t=%s#table' % (a, t))
 
 class AddTagToExpression(webapp2.RequestHandler):
   def get(self):
