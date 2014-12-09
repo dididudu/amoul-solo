@@ -17,7 +17,11 @@
 
         var options = {
           title: 'Evolution {{ type }} sur {{ annee }}',
+          {% if type == 'E' %}
           vAxis: {minValue: 0, maxValue: 20},
+          {% else %}
+          vAxis: {minValue: 0, maxValue: 10},
+          {% endif %}
           legend: {position: 'none'}
         };
 
