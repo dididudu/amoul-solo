@@ -69,8 +69,11 @@
  </table>
 
  <p>
+ {% if type == 'E' %}
   <a href="/computeMesures?t=E">Compute E</a>
+ {% else %}
   <a href="/computeMesures?t=G">Compute G</a>
+ {% endif %}
  </p>
 
 {% if admin %}
@@ -82,7 +85,17 @@
     <td><input name="m" value="" size="2"/></td>
     <td><input name="a" value="{{ annee }}" size="4"/></td>
     <td><input name="v" value="70000" size="4"/></td>
-    <td><select name="t"><option>E</option><option selected>G</option></select></td>
+    <td>
+      <select name="t">
+       {% if type == 'E' %}
+       <option selected>E</option>
+       <option>G</option>
+       {% else %}
+       <option>E</option>
+       <option selected>G</option>
+       {% endif %}
+      </select>
+     </td>
     <td><input class="submit" type="submit" value="Ajouter"/></td>
    </tr>
   </table>
