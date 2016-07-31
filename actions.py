@@ -17,6 +17,8 @@ from google.appengine.ext.webapp import template
 from models import Expression
 from models import Tag
 from models import Mesure
+from models import Grille
+from models import Essai
 
 # Set to true if we want to have our webapp print stack traces, etc
 _DEBUG = True
@@ -83,6 +85,74 @@ class AddTag(webapp2.RequestHandler):
 
     logging.debug('Finish tag adding')
     self.redirect('/tags')
+
+class AddGrille(webapp2.RequestHandler):
+  def post(self):
+    logging.debug('Start grille adding request')
+
+    g = self.request.get('grille')
+
+    grilles = []
+    try:
+      grilles = Mesure.gql("WHERE valeur = :1", g)
+    except:
+      logging.error('There was an error looking for grilles from the datastore')
+
+    if grilles.count() < 1:
+      grille = Grille(valeurs=g, niveau=1)
+      user = users.GetCurrentUser()
+      if user:
+        logging.info('Grille %s added by user %s' % (g, user.nickname()))
+        grille.created_by = user
+        grille.updated_by = user
+      else:
+        logging.info('Grille %s added by anonymous user' % g)
+
+      try:
+        grille.put()
+      except:
+        logging.error('There was an error adding grille %s' % g)
+
+      logging.debug('Finish grille adding')
+    else:
+      logging.debug('Grille already added')
+
+    self.redirect('/grilles')
+
+class AddEssai(webapp2.RequestHandler):
+  def post(self):
+    logging.debug('Start essai grille adding request')
+    id = self.request.get('grille')
+
+    g = None
+    try:
+      i = int(id)
+      g = Grille.get(db.Key.from_path('Grille', i))
+    except:
+      g = None
+
+    v = ""
+    for j in range(81):
+      param = "v"+str(j)
+      v = v + self.request.get(param)
+
+    if g:
+      essai = Essai(grille=g, valeurs = v)
+      user = users.GetCurrentUser()
+      if user:
+        logging.info('Essai added by user %s' % user.nickname())
+        essai.created_by = user
+        essai.updated_by = user
+      else:
+        logging.info('Essai added by anonymous user')
+
+      try:
+        essai.put()
+      except:
+        logging.error('There was an error adding essai')
+
+    logging.debug('Finish essai grille adding')
+    self.redirect('/grille/%s' % id)
 
 class AddMesure(webapp2.RequestHandler):
   def post(self):
@@ -157,6 +227,23 @@ class ListExpressions(BaseRequestHandler):
       }
 
     self.generate('expressions.html', template_values)
+
+class ListGrilles(BaseRequestHandler):
+  def get(self):
+    expressions = []
+    title = 'Grilles'
+    try:
+      grilles = Grille.gql("ORDER BY created")
+      title = 'Grilles'
+    except:
+      logging.error('There was an error retreiving grilles from the datastore')
+
+    template_values = {
+      'title': title,
+      'grilles': grilles,
+      }
+
+    self.generate('grilles.html', template_values)
 
 class ListTags(BaseRequestHandler):
   def get(self):
@@ -261,3 +348,105 @@ class ViewExpression(BaseRequestHandler):
       }
 
     self.generate('expression.html', template_values)
+
+class ViewGrille(BaseRequestHandler):
+  def get(self, arg):
+    title = 'Grille introuvable'
+    grille = None
+
+    # Get and displays the grille informations
+    try:
+      i = int(arg)
+      grille = Grille.get(db.Key.from_path('Grille', i))
+    except:
+      grille = None
+      logging.error('There was an error retreiving grille and its informations from the datastore')
+
+    essais = []
+    user = users.GetCurrentUser()
+    if user:
+      try:
+        essais = Essai.gql("WHERE grille = :1 AND created_by = :2", grille, user)
+      except:
+        essais = []
+
+    if not grille:
+      self.error(403)
+      return
+    else: 
+      title = "Grille"
+
+    template_values = {
+      'title': title,
+      'grille': grille,
+      'essais': essais
+      }
+
+    self.generate('grille.html', template_values)
+
+class UpgradeGrille(BaseRequestHandler):
+  def get(self, arg):
+    title = 'Grille introuvable'
+    grille = None
+
+    # Get the grille and updrades its niveau
+    try:
+      i = int(arg)
+      grille = Grille.get(db.Key.from_path('Grille', i))
+      if grille.niveau:
+        grille.niveau = grille.niveau + 1
+      else:
+        grille.niveau = 1
+      grille.put()
+      title = "Grille"
+    except:
+      grille = None
+      logging.error('There was an error retreiving and upgrading grille from the datastore')
+
+    template_values = {
+      'title': title,
+      'grille': grille
+      }
+
+    self.generate('grille.html', template_values)
+
+class DowngradeGrille(BaseRequestHandler):
+  def get(self, arg):
+    title = 'Grille introuvable'
+    grille = None
+
+    # Get the grille and downgrades its niveau
+    try:
+      i = int(arg)
+      grille = Grille.get(db.Key.from_path('Grille', i))
+      if grille.niveau:
+        grille.niveau = grille.niveau - 1
+      else:
+        grille.niveau = 1
+      grille.put()
+      title = "Grille"
+    except:
+      grille = None
+      logging.error('There was an error retreiving and downgrading grille from the datastore')
+
+    template_values = {
+      'title': title,
+      'grille': grille
+      }
+
+    self.generate('grille.html', template_values)
+
+class DeleteGrille(BaseRequestHandler):
+  def get(self, arg):
+    id = int(arg)
+    logging.info('Start grille deleting request : id = %s' % id)
+    grille = Grille.get(db.Key.from_path('Grille', id))
+    if not grille:
+      self.error(403)
+      return
+    try:
+      grille.delete()
+    except:
+      logging.error('There was an error deleting grille from the datastore')
+    logging.info('Finish grille deleting : id = %s' % id)
+    self.redirect('/grilles')

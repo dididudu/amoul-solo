@@ -8,15 +8,22 @@ __author__ = 'Didier Dulac'
 import webapp2
 
 from actions import BaseRequestHandler
+from actions import AddEssai
 from actions import AddExpression
+from actions import AddGrille
 from actions import AddTag
 from actions import AddMesure
 from actions import AddTagToExpression
 from actions import ComputeMesures
 from actions import ListExpressions
+from actions import ListGrilles
 from actions import ListTags
 from actions import ListMesures
+from actions import UpgradeGrille
+from actions import DowngradeGrille
+from actions import DeleteGrille
 from actions import ViewExpression
+from actions import ViewGrille
 
 class MainPage(BaseRequestHandler):
   def get(self):
@@ -47,6 +54,13 @@ application = webapp2.WSGIApplication([
   ('/expressions', ListExpressions),
   ('/expression/([-\w]+)', ViewExpression),
   ('/tags', ListTags),
+  ('/addGrille', AddGrille),
+  ('/deleteGrille/([-\w]+)', DeleteGrille),
+  ('/upgradeGrille/([-\w]+)', UpgradeGrille),
+  ('/downgradeGrille/([-\w]+)', DowngradeGrille),
+  ('/grilles', ListGrilles),
+  ('/grille/([-\w]+)', ViewGrille),
+  ('/addEssai', AddEssai),
   ('/mesures', ListMesures),
   ('/computeMesures', ComputeMesures)
 ], debug=True)

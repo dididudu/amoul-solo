@@ -3,6 +3,8 @@
 {% block description %}Expression "{{ expression.francais }}" du site Amoul Solo{% endblock %}
 {% block body %}
 
+{% if user %}
+
 <p>{{ expression.francais }}</p>
 <p><i>{{ expression.wolof }}</i></p>
 
@@ -23,5 +25,13 @@
 {% endfor %}
 </p>
 {% endif %}
+
+{% else %}
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Merci de vous identifier...</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+{% endif %}   
 
 {% endblock %}

@@ -3,6 +3,8 @@
 {% block description %}Expressions du site Amoul Solo{% endblock %}
 {% block body %}
 
+{% if user %}
+
  <table class="ink-table alternating hover">
   <thead>
    <tr>
@@ -40,5 +42,13 @@
   </table>
  </form>
 {% endif %}
+
+{% else %}
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Merci de vous identifier...</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+{% endif %}   
 
 {% endblock %}

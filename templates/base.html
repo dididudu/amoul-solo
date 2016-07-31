@@ -78,6 +78,78 @@
             h5 {
                 border-bottom: 1px solid black;
             }
+            table.sudoku {
+                border: 3px solid black;
+            }
+            tr.sudoku {
+                border-bottom: 3px solid black;
+            }
+            table.sudoku td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+            table.sudoku td#d2 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d5 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d11 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d14 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d20 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d23 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d29 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d32 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d38 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d41 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d47 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d50 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d56 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d59 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d65 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d68 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d74 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d77 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td.selected {
+                border: 1px solid black;
+                background: #ccc;
+                padding: 10px;
+            }
+            .hidden {
+                display: none;
+            }
         </style>
     </head>
     <body>
@@ -87,37 +159,31 @@
                 <nav class="ink-navigation ink-grid">
                     <ul class="menu horizontal black">
                         <li><a href="/">{{ application_name }}</a></li>
+                        <li><a href="/grilles">Grilles</a></li>
 		        {% if user %}
                         <li><a href="/expressions">Expressions</a></li>
+			{% if admin %}
                         <li><a href="/tags">Tags</a></li>
+		        {% endif %}
 			{% if admin %}
                         <li>
-                         <a>2012</a>
+                         <a>E</a>
                          <ul class="submenu">
-                          <li><a href="/mesures?a=2012&t=E">E</a></li>
-                          <li><a href="/mesures?a=2012&t=G">G</a></li>
+                          <li><a href="/mesures?a=2012&t=E">2012</a></li>
+                          <li><a href="/mesures?a=2013&t=E">2013</a></li>
+                          <li><a href="/mesures?a=2014&t=E">2014</a></li>
+                          <li><a href="/mesures?a=2015&t=E">2015</a></li>
+                          <li><a href="/mesures?a=2016&t=E">2016</a></li>
                          </ul>
                         </li>
                         <li>
-                         <a>2013</a>
+                         <a>G</a>
                          <ul class="submenu">
-                          <li><a href="/mesures?a=2013&t=E">E</a></li>
-                          <li><a href="/mesures?a=2013&t=G">G</a></li>
-                         </ul>
-                         </li>
-                        <li>
-                         <a>2014</a>
-                         <ul class="submenu">
-                          <li><a href="/mesures?a=2014&t=E">E</a></li>
-                          <li><a href="/mesures?a=2014&t=G">G</a></li>
-                         </ul>
-                        </li>
-                        <li>
-                         <a>2015</a>
-                         <ul class="submenu">
-                          <li><a href="/mesures?a=2015&t=E">E</a></li>
-                          <li><a href="/mesures?a=2015&t=G">G</a></li>
-                          <li><a href="/mesures?a=2015&t=H">H</a></li>
+                          <li><a href="/mesures?a=2013&t=G">2012</a></li>
+                          <li><a href="/mesures?a=2012&t=G">2013</a></li>
+                          <li><a href="/mesures?a=2014&t=G">2014</a></li>
+                          <li><a href="/mesures?a=2015&t=G">2015</a></li>
+                          <li><a href="/mesures?a=2016&t=G">2016</a></li>
                          </ul>
                         </li>
                         {% endif %}
@@ -130,17 +196,9 @@
             </div>
 
             <div class="ink-grid vertical-space">
-		{% if user %}
-			{% block body %}
-			<p>...</p>
-			{% endblock %}
-		{% else %}
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-			<p>Merci de vous identifier...</p>
-			<p>&nbsp;</p>
-			<p>&nbsp;</p>
-		{% endif %}   
+		{% block body %}
+		<p>...</p>
+		{% endblock %}
             </div>
             <div class="push"></div>
         </div>
@@ -149,7 +207,7 @@
                 <ul class="unstyled inline half-vertical-space">
                     <li><a href="/about">About</a></li>
                     <li><a href="/contacts">Contacts</a></li>
-                    <li>&copy; Copyright 2014-2015 Amoul Solo</li>
+                    <li>&copy; Copyright 2014-2016 Amoul Solo</li>
                 </ul>
             </div>
         </footer>

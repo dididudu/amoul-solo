@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
 {% block description %}Accueil du site Amoul Solo{% endblock %}
+
 {% block body %}
  <p>&nbsp;</p>
- <p>En construction</p>
+ <p>Quelques grilles de Sudoku sont accessibles sur ce site.</p>
+
+{% if user %}
+ <p>Ainsi que quelques expressions en Wolof (langue utilis&eacute;e au S&eacute;n&eacute;gal).</p>
+ <p>Ne me demandez pas le point commun...</p>
+{% endif %}   
+
 {% endblock %}

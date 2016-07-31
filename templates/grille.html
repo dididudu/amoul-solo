@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block description %}Grille "{{ grille.key.id }}"{% endblock %}
+
+{% block js %}
+<script type="text/javascript" src="/static/js/validation.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<h4>
+	Grille {{ grille.key.id }}
+	(niveau {{ grille.niveau }})
+	{% if admin %}
+	[<a href="/downgradeGrille/{{ grille.key.id }}">-</a>
+	<a href="/upgradeGrille/{{ grille.key.id }}">+</a>]
+	{% endif %}
+</h4>
+
+{% autoescape off %}{{ grille.get_tableau }}{% endautoescape %}
+
+<p>Cliquer ci-dessous mettre &agrave; jour la valeur de la cellule s&eacute;lectionn&eacute;e du tableau ci-dessus :</p>
+
+		<table class="sudoku">
+			<tr>
+				<td id="1" onClick="update('1')">1</td>
+				<td id="2" onClick="update('2')">2</td>
+				<td id="3" onClick="update('3')">3</td>
+				<td id="4" onClick="update('4')">4</td>
+				<td id="5" onClick="update('5')">5</td>
+				<td id="6" onClick="update('6')">6</td>
+				<td id="7" onClick="update('7')">7</td>
+				<td id="8" onClick="update('8')">8</td>
+				<td id="9" onClick="update('9')">9</td>
+				<td id="0" onClick="update('0')">X</td>
+			</tr>
+		</table>
+
+{% if user %}
+ {% if essais.count > 0 %}
+  {% for e in essais %}
+    <p>Essai pour {{ e.created_by }} enregistr&eacute; le {{ e.created|date:"d/m/y" }}...</p>
+  {% endfor %}
+ {% else %}
+  {% autoescape off %}{{ grille.get_formulaire_creation }}{% endautoescape %}
+ {% endif %}
+
+{% endif %}
+
+<h5>
+	Solution
+	<img src="/static/img/plus.png" alt="Expand" id="b1p" class="visible" onClick="show('b1')" />
+	<img src="/static/img/minus.png" alt="Collapse" id="b1m" class="hidden" onClick="hide('b1')"/>
+</h5>
+
+<div class="hidden" id="b1">
+{% autoescape off %}{{ grille.get_tableau_solution }}{% endautoescape %}
+</div>
+
+{% if admin %}
+<img src="/static/img/plus.png" alt="Debug" id="b2p" onClick="zip('b2')"/>
+<div id="b2">
+</div>
+{% endif %}
+
+{% endblock %}

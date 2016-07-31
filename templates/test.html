@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Test</title>
+        
+	<script type="text/javascript" src="../static/js/validation.js"></script>
+        
+        <style type="text/css">
+            html, body {
+                height: 100%;
+                background: #f0f0f0;
+            }
+            .wrap {
+                min-height: 100%;
+                height: auto !important;
+                height: 100%;
+                margin: 0 auto -60px;
+                overflow: auto;
+            }
+            .push, footer {
+                height: 60px;
+                margin-top: 0;
+            }
+            footer {
+                background: #ccc;
+                border: 0;
+            }
+            footer * {
+                line-height: inherit;
+            }
+            .top-menu {
+                background: #1a1a1a;
+            }
+            h4 {
+                border-bottom: 2px solid black;
+            }
+            h5 {
+                border-bottom: 1px solid black;
+            }
+            table.sudoku {
+                border: 3px solid black;
+            }
+            tr.sudoku {
+                border-bottom: 3px solid black;
+            }
+            table.sudoku td {
+                border: 1px solid black;
+                padding: 10px;
+            }
+            table.sudoku td#d2 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d5 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d11 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d14 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d20 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d23 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d29 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d32 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d38 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d41 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d47 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d50 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d56 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d59 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d65 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d68 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d74 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td#d77 {
+                border-right: 3px solid black;
+            }
+            table.sudoku td.selected {
+                border: 1px solid black;
+                background: #ccc;
+                padding: 10px;
+            }
+            .hidden {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+<table class="sudoku"><tbody>
+ <tr>
+   <td id="d0"><b>1</b></td>
+   <td class="selected" id="d1" onClick="selectionne('d1')"><i>&nbsp;</i></td>
+   <td id="d2" onClick="selectionne('d2')"><i>&nbsp;</i></td>
+   <td id="d3" onClick="selectionne('d3')"><i>&nbsp;</i></td>
+   <td id="d4" onClick="selectionne('d4')"><i>&nbsp;</i></td>
+   <td id="d5" onClick="selectionne('d5')"><i>&nbsp;</i></td>
+   <td id="d6" onClick="selectionne('d6')"><i>&nbsp;</i></td>
+   <td id="d7" onClick="selectionne('d7')"><i>&nbsp;</i></td>
+   <td id="d8" onClick="selectionne('d8')"><i>&nbsp;</i></td>
+ </tr>
+ <tr>
+   <td id="d9" onClick="selectionne('d9')"><i>&nbsp;</i></td>
+   <td id="d10" onClick="selectionne('d10')"><i>&nbsp;</i></td>
+   <td id="d11" onClick="selectionne('d11')"><i>&nbsp;</i></td>
+   <td id="d12" onClick="selectionne('d12')"><i>&nbsp;</i></td>
+   <td id="d13" onClick="selectionne('d13')"><i>&nbsp;</i></td>
+   <td id="d14" onClick="selectionne('d14')"><i>&nbsp;</i></td>
+   <td id="d15" onClick="selectionne('d15')"><i>&nbsp;</i></td>
+   <td id="d16" onClick="selectionne('d16')"><i>&nbsp;</i></td>
+   <td id="d17"><b>1</b></td>
+ </tr>
+ <tr class="sudoku">
+   <td id="d18" onClick="selectionne('d18')"><i>&nbsp;</i></td>
+   <td id="d19" onClick="selectionne('d19')"><i>&nbsp;</i></td>
+   <td id="d20" onClick="selectionne('d20')"><i>&nbsp;</i></td>
+   <td id="d21" onClick="selectionne('d21')"><i>&nbsp;</i></td>
+   <td id="d22"><b>1</b></td>
+   <td id="d23" onClick="selectionne('d23')"><i>&nbsp;</i></td>
+   <td id="d24" onClick="selectionne('d24')"><i>&nbsp;</i></td>
+   <td id="d25" onClick="selectionne('d25')"><i>&nbsp;</i></td>
+   <td id="d26" onClick="selectionne('d26')"><i>&nbsp;</i></td>
+ </tr>
+ <tr>
+   <td id="d27" onClick="selectionne('d27')"><i>&nbsp;</i></td>
+   <td id="d28"><b>1</b></td>
+   <td id="d29" onClick="selectionne('d29')"><i>&nbsp;</i></td>
+   <td id="d30" onClick="selectionne('d30')"><i>&nbsp;</i></td>
+   <td id="d31" onClick="selectionne('d31')"><i>&nbsp;</i></td>
+   <td id="d32" onClick="selectionne('d32')"><i>&nbsp;</i></td>
+   <td id="d33" onClick="selectionne('d33')"><i>&nbsp;</i></td>
+   <td id="d34" onClick="selectionne('d34')"><i>&nbsp;</i></td>
+   <td id="d35" onClick="selectionne('d35')"><i>&nbsp;</i></td>
+ </tr>
+ <tr>
+   <td id="d36" onClick="selectionne('d36')"><i>&nbsp;</i></td>
+   <td id="d37" onClick="selectionne('d37')"><i>&nbsp;</i></td>
+   <td id="d38" onClick="selectionne('d38')"><i>&nbsp;</i></td>
+   <td id="d39" onClick="selectionne('d39')"><i>&nbsp;</i></td>
+   <td id="d40" onClick="selectionne('d40')"><i>&nbsp;</i></td>
+   <td id="d41"><b>1</b></td>
+   <td id="d42" onClick="selectionne('d42')"><i>&nbsp;</i></td>
+   <td id="d43" onClick="selectionne('d43')"><i>&nbsp;</i></td>
+   <td id="d44" onClick="selectionne('d44')"><i>&nbsp;</i></td>
+ </tr>
+ <tr class="sudoku">
+   <td id="d45" onClick="selectionne('d45')"><i>&nbsp;</i></td>
+   <td id="d46" onClick="selectionne('d46')"><i>&nbsp;</i></td>
+   <td id="d47" onClick="selectionne('d47')"><i>&nbsp;</i></td>
+   <td id="d48" onClick="selectionne('d48')"><i>&nbsp;</i></td>
+   <td id="d49" onClick="selectionne('d49')"><i>&nbsp;</i></td>
+   <td id="d50" onClick="selectionne('d50')"><i>&nbsp;</i></td>
+   <td id="d51"><b>1</b></td>
+   <td id="d52" onClick="selectionne('d52')"><i>&nbsp;</i></td>
+   <td id="d53" onClick="selectionne('d53')"><i>&nbsp;</i></td>
+ </tr>
+ <tr>
+   <td id="d54" onClick="selectionne('d54')"><i>&nbsp;</i></td>
+   <td id="d55" onClick="selectionne('d55')"><i>&nbsp;</i></td>
+   <td id="d56"><b>1</b></td>
+   <td id="d57" onClick="selectionne('d57')"><i>&nbsp;</i></td>
+   <td id="d58" onClick="selectionne('d58')"><i>&nbsp;</i></td>
+   <td id="d59" onClick="selectionne('d59')"><i>&nbsp;</i></td>
+   <td id="d60" onClick="selectionne('d60')"><i>&nbsp;</i></td>
+   <td id="d61" onClick="selectionne('d61')"><i>&nbsp;</i></td>
+   <td id="d62" onClick="selectionne('d62')"><i>&nbsp;</i></td>
+ </tr>
+ <tr>
+   <td id="d63" onClick="selectionne('d63')"><i>&nbsp;</i></td>
+   <td id="d64" onClick="selectionne('d64')"><i>&nbsp;</i></td>
+   <td id="d65" onClick="selectionne('d65')"><i>&nbsp;</i></td>
+   <td id="d66"><b>1</b></td>
+   <td id="d67" onClick="selectionne('d67')"><i>&nbsp;</i></td>
+   <td id="d68" onClick="selectionne('d68')"><i>&nbsp;</i></td>
+   <td id="d69" onClick="selectionne('d69')"><i>&nbsp;</i></td>
+   <td id="d70" onClick="selectionne('d70')"><i>&nbsp;</i></td>
+   <td id="d71" onClick="selectionne('d71')"><i>&nbsp;</i></td>
+ </tr>
+ <tr>
+   <td id="d72" onClick="selectionne('d72')"><i>&nbsp;</i></td>
+   <td id="d73" onClick="selectionne('d73')"><i>&nbsp;</i></td>
+   <td id="d74" onClick="selectionne('d74')"><i>&nbsp;</i></td>
+   <td id="d75" onClick="selectionne('d75')"><i>&nbsp;</i></td>
+   <td id="d76" onClick="selectionne('d76')"><i>&nbsp;</i></td>
+   <td id="d77" onClick="selectionne('d77')"><i>&nbsp;</i></td>
+   <td id="d78" onClick="selectionne('d78')"><i>&nbsp;</i></td>
+   <td id="d79" onClick="selectionne('d79')"><i>&nbsp;</i></td>
+   <td id="d80" onClick="selectionne('d80')"><i>&nbsp;</i></td>
+ </tr>
+</tbody></table>
+
+<p>Cliquer ci-dessous mettre &agrave; jour la valeur de la cellule s&eacute;lectionn&eacute;e du tableau ci-dessus :</p>
+
+<table class="sudoku">
+ <tbody>
+  <tr>
+   <td id="1" onClick="update('1')">1</td>
+   <td id="2" onClick="update('2')">2</td>
+   <td id="3" onClick="update('3')">3</td>
+   <td id="4" onClick="update('4')">4</td>
+   <td id="5" onClick="update('5')">5</td>
+   <td id="6" onClick="update('6')">6</td>
+   <td id="7" onClick="update('7')">7</td>
+   <td id="8" onClick="update('8')">8</td>
+   <td id="9" onClick="update('9')">9</td>
+   <td id="0" onClick="update('0')">X</td>
+  </tr>
+  <tr>
+   <td id="c1">0</td>
+   <td id="c2">0</td>
+   <td id="c3">0</td>
+   <td id="c4">0</td>
+   <td id="c5">0</td>
+   <td id="c6">0</td>
+   <td id="c7">0</td>
+   <td id="c8">0</td>
+   <td id="c9">0</td>
+   <td/>
+  </tr>
+ </tbody>
+</table>
+
+<p></p>
+
+<img src="../static/img/plus.png" alt="Debug" id="b2p" onClick="zip('b2')"/>
+<div id="b2">
+</div>
+
+<p></p>
+
+<div id="truc">
+<b>rien</b>
+</div>
+
+</body>
+</html>

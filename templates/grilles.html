@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block description %}Grilles du site Amoul Solo{% endblock %}
+{% block body %}
+
+ <table class="ink-table alternating hover">
+  <thead>
+   <tr>
+    <th>Grille</th>
+{% if user %}
+    <th>Solution</th>
+{% endif %}
+    <th>Niveau</th>
+    <th>Cr&eacute;ation</th>
+    <th>Essais</th>
+{% if user %}
+    <th>En cours</th>
+{% endif %}
+{% if admin %}
+    <th>&nbsp;</th>
+{% endif %}
+   </tr>
+  </thead>
+  <tbody>
+  {% for g in grilles %}
+   <tr>
+    <td><a href="/grille/{{ g.key.id }}">{{ g.key.id }}</a></td>
+{% if user %}
+    <td align=center>{% if g.solution %}OUI{% else %}NON{% endif %}</td>
+{% endif %}
+    <td align=center>{{ g.niveau }}</td>
+    <td align=center>{{ g.created|date:"d/m/y" }}</td>
+    <td align=center>{{ g.essais.count }}</td>
+{% if user %}
+    <td align=center>
+    {% for e in g.essais %}
+      {% if user = e.created_by %}OUI{% endif %}
+    {% endfor %}
+    </td>
+{% endif %}
+{% if admin %}
+    <td><a href="/deleteGrille/{{ g.key.id }}">Del</a></td>
+{% endif %}
+   </tr>
+  {% endfor %}
+  </tbody>
+ </table>
+
+{% if admin %}
+ <form action="/addGrille" method="post">
+  <table class="form">
+   <tr>
+    <td><input name="grille" value=""/></td>
+    <td><input class="submit" type="submit" value="Ajouter"/></td>
+   </tr>
+  </table>
+ </form>
+{% endif %}
+
+{% endblock %}
